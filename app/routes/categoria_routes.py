@@ -24,7 +24,7 @@ def listar():
           ]
     """
     categorias = controller.listar_categorias()
-    return jsonify([c.__dict__ for c in categorias])
+    return jsonify([c.to_dict() for c in categorias])
 
 @bp_categorias.route('/<int:id>', methods=['GET'])
 def obter(id):
@@ -54,7 +54,7 @@ def obter(id):
         description: Categoria não encontrada
     """
     c = controller.obter_categoria(id)
-    return jsonify(c.__dict__) if c else ('', 404)
+    return jsonify(c.to_dict()) if c else ('', 404)
 
 @bp_categorias.route('/', methods=['POST'])
 def criar():
@@ -86,7 +86,7 @@ def criar():
             }
     """
     c = controller.criar_categoria(request.json)
-    return jsonify(c.__dict__), 201
+    return jsonify(c.to_dict()), 201
 
 @bp_categorias.route('/<int:id>', methods=['PUT'])
 def atualizar(id):
@@ -126,7 +126,7 @@ def atualizar(id):
         description: Categoria não encontrada
     """
     c = controller.atualizar_categoria(id, request.json)
-    return jsonify(c.__dict__) if c else ('', 404)
+    return jsonify(c.to_dict()) if c else ('', 404)
 
 @bp_categorias.route('/<int:id>', methods=['DELETE'])
 def deletar(id):

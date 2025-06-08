@@ -1,6 +1,6 @@
 from flask import Flask
 from flasgger import Swagger
-from .models import db
+from app.models import db
 from .routes.produto_routes import bp_produtos
 from .routes.categoria_routes import bp_categorias
 from .routes.usuario_routes import bp_usuarios

@@ -26,7 +26,7 @@ def listar():
           ]
     """
     usuarios = controller.listar_usuarios()
-    return jsonify([u.__dict__ for u in usuarios])
+    return jsonify([u.to_dict() for u in usuarios])
 
 @bp_usuarios.route('/<int:id>', methods=['GET'])
 def obter(id):
@@ -58,7 +58,7 @@ def obter(id):
         description: Usuário não encontrado
     """
     u = controller.obter_usuario(id)
-    return jsonify(u.__dict__) if u else ('', 404)
+    return jsonify(u.to_dict()) if u else ('', 404)
 
 @bp_usuarios.route('/', methods=['POST'])
 def criar():
@@ -95,7 +95,7 @@ def criar():
             }
     """
     u = controller.criar_usuario(request.json)
-    return jsonify(u.__dict__), 201
+    return jsonify(u.to_dict()), 201
 
 @bp_usuarios.route('/<int:id>', methods=['PUT'])
 def atualizar(id):
@@ -139,7 +139,7 @@ def atualizar(id):
         description: Usuário não encontrado
     """
     u = controller.atualizar_usuario(id, request.json)
-    return jsonify(u.__dict__) if u else ('', 404)
+    return jsonify(u.to_dict()) if u else ('', 404)
 
 @bp_usuarios.route('/<int:id>', methods=['DELETE'])
 def deletar(id):

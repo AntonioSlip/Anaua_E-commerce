@@ -25,7 +25,7 @@ def listar():
           ]
     """
     vendas = controller.listar_vendas()
-    return jsonify([v.__dict__ for v in vendas])
+    return jsonify([v.to_dict() for v in vendas])
 
 @bp_vendas.route('/<int:id>', methods=['GET'])
 def obter(id):
@@ -56,7 +56,7 @@ def obter(id):
         description: Venda não encontrada
     """
     v = controller.obter_venda(id)
-    return jsonify(v.__dict__) if v else ('', 404)
+    return jsonify(v.to_dict()) if v else ('', 404)
 
 @bp_vendas.route('/', methods=['POST'])
 def criar():
@@ -89,7 +89,7 @@ def criar():
             }
     """
     v = controller.criar_venda(request.json)
-    return jsonify(v.__dict__), 201
+    return jsonify(v.to_dict()), 201
 
 @bp_vendas.route('/<int:id>', methods=['PUT'])
 def atualizar(id):
@@ -129,7 +129,7 @@ def atualizar(id):
         description: Venda não encontrada
     """
     v = controller.atualizar_venda(id, request.json)
-    return jsonify(v.__dict__) if v else ('', 404)
+    return jsonify(v.to_dict()) if v else ('', 404)
 
 @bp_vendas.route('/<int:id>', methods=['DELETE'])
 def deletar(id):
