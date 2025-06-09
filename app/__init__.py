@@ -1,11 +1,11 @@
 from flask import Flask
 from flasgger import Swagger
 from app.models import db
-from .routes.produto_routes import bp_produtos
-from .routes.categoria_routes import bp_categorias
-from .routes.usuario_routes import bp_usuarios
-from .routes.venda_routes import bp_vendas
-from .routes.itemvenda_routes import bp_itens_venda
+from .routes.Produto_routes import bp_produtos
+from .routes.Categoria_routes import bp_categorias
+from .routes.Usuario_routes import bp_usuarios
+from .routes.Venda_routes import bp_vendas
+from .routes.ItemVenda_routes import bp_itens_venda
 
 def create_app():
     app = Flask(__name__)
